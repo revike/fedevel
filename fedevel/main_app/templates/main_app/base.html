@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block title %}
+            {{ title|capfirst }}
+        {% endblock %}
+    </title>
+
+    {% block css %}
+        <link rel="stylesheet"
+              href="{% static 'bootstrap5/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+
+    {% block js %}
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'bootstrap5/js/bootstrap.min.js' %}"></script>
+    {% endblock %}
+</head>
+
+<body>
+<div class="my_content wrapper">
+    {% block header %}
+        {% include 'main_app/includes/inc_header.html' %}
+    {% endblock %}
+
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+
+    {% block footer %}
+        {% include 'main_app/includes/inc_footer.html' %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>

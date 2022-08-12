@@ -8,4 +8,6 @@ db.sqlite3
 venv
 .env
 media/
-static/
+#static/
+
+/fedevel/static/
