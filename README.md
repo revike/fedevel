@@ -21,9 +21,9 @@ Fedevel
 Основные технологии
 -------------------
 
-* Python
-* Django
-* Postgresql
+* Python==3.10.5
+* Django==4.1
+* Postgresql==14.5
 * MongoDB
 * RabbitMQ
 * Docker
