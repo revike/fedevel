@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+
+  db:
+    image: postgres
+    container_name: fedevel_db
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fedevel
+    volumes:
+      - .:/code
+    command: ./docker_commands.sh
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+volumes:
+  pg_data:
