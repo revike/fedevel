@@ -42,6 +42,11 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True, db_index=True,
                                     verbose_name='активна')
 
+    @classmethod
+    def get_product_category(cls, pk):
+        return cls.objects.filter(category_id=pk, is_active=True,
+                                  category__is_active=True)
+
     def __str__(self):
         return f'{self.name}; Категория: {self.category.name}'
 

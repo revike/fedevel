@@ -5,7 +5,7 @@
 {% block content %}
     {% for object in object_list %}
         <h1>
-            <p>{{ object.product }}</p>
+            <p>{{ object }}</p>
             <p>{{ object.price }}</p>
             <p>{{ object.product.product_image.get_queryset.0.image }}</p>
         </h1>
