@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootstrap5',
 
     'main_app',
+    'auth_app',
 ]
 
 MIDDLEWARE = [
@@ -109,7 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# AUTH_USER_MODEL = 'auth_app.User'
+AUTH_USER_MODEL = 'auth_app.ShopUser'
+AUTHENTICATION_BACKENDS = ('auth_app.backends.AuthBackend',)
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
