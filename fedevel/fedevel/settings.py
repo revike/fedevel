@@ -30,7 +30,6 @@ Env.read_env(os.path.join(BASE_DIR, "../.env"))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
-
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(' ')
 
 # Application definition
@@ -83,10 +82,21 @@ WSGI_APPLICATION = 'fedevel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': env('POSTGRES_DB'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': 'db',
+        'PORT': '5432'
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
