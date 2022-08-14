@@ -1,0 +1,13 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% for product in products %}
+        <h1>
+            <p>{{ product.name }}</p>
+{#            <p>{{ product.product_option.0.name }}</p>#}
+            --------------------
+{#            <p>{{ product.product_image.get_queryset.0.image }}</p>#}
+        </h1>
+    {% endfor %}
+{% endblock %}

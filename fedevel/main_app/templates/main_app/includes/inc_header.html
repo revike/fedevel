@@ -5,7 +5,7 @@
                 <input type="text" placeholder="🔎 поиск">
             </form>
         </label>
-        <a class="header-menu" href="#">Войти</a>
+        <a class="header-menu" href="{% url 'admin:index' %}">Войти</a>
         <a class="header-menu" href="#">✉️ 1</a>
         <a class="header-menu" href="#">🛒 0</a>
     </div>
@@ -21,7 +21,7 @@
                 </button>
                 <div class="dropdown-content">
                     {% for category in categories %}
-                        <a href="#">{{ category }}</a>
+                        <a href="{% url 'main:category' pk=category.pk %}">{{ category }}</a>
                     {% endfor %}
                 </div>
             </div>
