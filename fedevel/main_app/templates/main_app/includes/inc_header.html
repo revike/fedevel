@@ -1,5 +1,48 @@
 <header>
-    <div class="dropdown-header card-header popover-header">
-        <h1>Header</h1>
+    <div class="header">
+        <label class="search">
+            <form action="#">
+                <input type="text" placeholder="🔎 поиск">
+            </form>
+        </label>
+        <a class="header-menu" href="#">Войти</a>
+        <a class="header-menu" href="#">✉️ 1</a>
+        <a class="header-menu" href="#">🛒 0</a>
+    </div>
+
+    <div class="dropdown-header card-header popover-header header-top">
+        <div class="header_2">
+
+            <div class="dropdown header__menu header-top">
+                <button
+                        {% if request.resolver_match.url_name.split.0 == 'category' %}class="drop__btn active"
+                        {% else %}class="drop__btn"{% endif %}>
+                    <h3>Продукты</h3>
+                </button>
+                <div class="dropdown-content">
+                    {% for category in categories %}
+                        <a href="#">{{ category }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <a class="link_fedevel" href="{% url 'main:index' %}"><h1
+                    class="header-top">Fedevel</h1>
+            </a>
+
+            <div class="dropdown header__menu header-top">
+                <button
+                        {% if request.resolver_match.url_name.split.0 == 'category' %}class="drop__btn active"
+                        {% else %}class="drop__btn"{% endif %}>
+                    <h3>Информация</h3>
+                </button>
+                <div class="dropdown-content">
+                    <a class="" href="#">О компании</a>
+                    <a class="" href="#">Доставка</a>
+                    <a class="" href="#">Cookies</a>
+                    <a class="" href="#">Обратная связь</a>
+                </div>
+            </div>
+
+        </div>
     </div>
 </header>
