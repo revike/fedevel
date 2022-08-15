@@ -16,10 +16,11 @@ class ShopUser(AbstractUser):
         verbose_name_plural = 'пользователи'
         verbose_name = 'пользователи'
 
-    email = models.EmailField(_("email address"), blank=True)
+    email = models.EmailField(_("email address"), blank=True, unique=True)
     phone_regex = RegexValidator(regex=r'^\+7\d{10}$')
     phone = models.CharField(validators=[phone_regex], max_length=12,
-                             blank=True, verbose_name='номер телефона')
+                             blank=False, unique=True,
+                             verbose_name='номер телефона')
     activation_key = models.CharField(max_length=128, blank=True)
     activation_key_expires = models.DateTimeField(
         default=(now() + timedelta(hours=48)))
@@ -35,6 +36,7 @@ class ShopUser(AbstractUser):
 
 class ShopUserProfile(models.Model):
     """Профиль пользователя"""
+
     class Meta:
         verbose_name_plural = 'профиль пользователя'
         verbose_name = 'профиль пользователя'
@@ -61,10 +63,6 @@ class ShopUserProfile(models.Model):
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             ShopUserProfile.objects.create(user=instance)
-
-    @receiver(post_save, sender=ShopUser)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.shopuserprofile.save()
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):

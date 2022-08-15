@@ -9,6 +9,10 @@ body {
     background-attachment: fixed;
 }
 
+header {
+    padding-bottom: 30px;
+}
+
 .wrapper {
     min-height: 100vh;
     display: flex;
@@ -110,4 +114,42 @@ body {
 .search {
     padding: 1px;
     margin: 1px;
+}
+
+.auth_form {
+    border-radius: 10px;
+    width: 35%;
+    margin: auto;
+}
+
+.control__button {
+    width: 100%;
+    text-align: right;
+}
+
+.form-control__button {
+    margin: 5px;
+    padding: 3px 15px 3px 15px;
+    border: 1px solid grey;
+    border-radius: 15px;
+    background-color: lightgrey;
+    font-size: 20px;
+}
+
+.control__button :hover {
+    color: grey;
+}
+
+.register-p {
+    text-align: center;
+}
+
+.register-p a {
+    color: black;
+    text-decoration: none;
+}
+
+.register-p a:hover {
+    color: grey;
+    text-decoration: none;
 }

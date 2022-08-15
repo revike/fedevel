@@ -1,0 +1,19 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="auth_form form-control form-check">
+        <h1 class="login_title">{{ title }}</h1>
+        <form action="{% url 'auth_app:login' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="control__button">
+                <button class="form-control__button" type="submit">Войти
+                </button>
+                <p class="register-p">
+                    <a href="#">Зарегистрироваться</a>
+                </p>
+            </div>
+        </form>
+    </div>
+{% endblock %}
