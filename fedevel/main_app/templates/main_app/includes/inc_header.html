@@ -5,7 +5,11 @@
                 <input type="text" placeholder="🔎 поиск">
             </form>
         </label>
-        <a class="header-menu" href="{% url 'admin:index' %}">Войти</a>
+        {% if not user.is_anonymous %}
+            <a class="header-menu" href="{% url 'auth:login' %}">🧑🏻‍🦰</a>
+        {% else %}
+            <a class="header-menu" href="{% url 'auth:login' %}">Войти</a>
+        {% endif %}
         <a class="header-menu" href="#">✉️ 1</a>
         <a class="header-menu" href="#">🛒 0</a>
     </div>
