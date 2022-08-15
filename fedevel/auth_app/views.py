@@ -3,8 +3,9 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
+from django.views.generic import CreateView
 
-from auth_app.forms import CompanyUserLoginForm
+from auth_app.forms import CompanyUserLoginForm, CompanyUserRegisterForm
 from main_app.models import ProductCategory
 
 
@@ -45,3 +46,24 @@ class LogoutUserView(LogoutView):
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect(reverse('auth:login'))
+
+
+class RegisterView(CreateView):
+    """Контроллер регистрации"""
+    template_name = 'auth_app/register.html'
+    form_class = CompanyUserRegisterForm
+    success_url = reverse_lazy('auth:login')
+
+    def get_context_data(self, **kwargs):
+        """Возвращает контекст для этого представления"""
+        context = super().get_context_data(**kwargs)
+        next_url = self.request.META.get('HTTP_REFERER')
+        self.request.session['next_url'] = next_url
+        context['title'] = 'Регистрация'
+        context['categories'] = ProductCategory.get_categories()
+        return context
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('main:index'))
+        return super().get(self.request, **kwargs)

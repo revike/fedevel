@@ -9,10 +9,6 @@ body {
     background-attachment: fixed;
 }
 
-header {
-    padding-bottom: 30px;
-}
-
 .wrapper {
     min-height: 100vh;
     display: flex;
@@ -21,6 +17,7 @@ header {
 
 .container {
     flex-grow: 1;
+    padding: 30px 0 30px 0;
 }
 
 .header {

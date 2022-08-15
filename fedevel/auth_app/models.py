@@ -1,11 +1,9 @@
-from datetime import timedelta
 from PIL import Image
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 
 
@@ -16,22 +14,16 @@ class ShopUser(AbstractUser):
         verbose_name_plural = 'пользователи'
         verbose_name = 'пользователи'
 
-    email = models.EmailField(_("email address"), blank=True, unique=True)
+    username = models.CharField(_("username"), max_length=150, unique=False,
+                                blank=True)
+    email = models.EmailField(_("email address"), blank=False, unique=True)
     phone_regex = RegexValidator(regex=r'^\+7\d{10}$')
     phone = models.CharField(validators=[phone_regex], max_length=12,
                              blank=False, unique=True,
                              verbose_name='номер телефона')
-    activation_key = models.CharField(max_length=128, blank=True)
-    activation_key_expires = models.DateTimeField(
-        default=(now() + timedelta(hours=48)))
-
-    def is_activation_key_expired(self):
-        if now() <= self.activation_key_expires:
-            return False
-        return True
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name} "{self.username}"'
+        return f'{self.first_name} {self.last_name}'
 
 
 class ShopUserProfile(models.Model):
@@ -56,7 +48,7 @@ class ShopUserProfile(models.Model):
     about_me = models.TextField(blank=True, verbose_name='о себе')
     gender = models.CharField(max_length=1, blank=True,
                               choices=GENDER_CHOICES, verbose_name='пол')
-    is_active = models.BooleanField(default=False, db_index=True,
+    is_active = models.BooleanField(default=True, db_index=True,
                                     verbose_name='активен')
 
     @receiver(post_save, sender=ShopUser)

@@ -4,15 +4,12 @@
 {% block content %}
     <div class="auth_form form-control form-check">
         <h1 class="login_title">{{ title }}</h1>
-        <form action="{% url 'auth_app:login' %}" method="post">
+        <form action="{% url 'auth_app:register' %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <div class="control__button">
-                <button class="form-control__button" type="submit">Войти
+                <button class="form-control__button" type="submit">Регистрация
                 </button>
-                <p class="register-p">
-                    <a href="{% url 'auth:register' %}">Зарегистрироваться</a>
-                </p>
             </div>
         </form>
     </div>
