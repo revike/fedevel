@@ -150,3 +150,25 @@ body {
     color: grey;
     text-decoration: none;
 }
+
+.personal_title {
+    text-align: center;
+}
+
+.personal-menu {
+    padding-top: 20px;
+}
+
+.personal-menu a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    border-radius: 10px;
+}
+
+.personal-menu a:hover {
+    background-color: #ddd;
+    color: cornflowerblue;
+}
