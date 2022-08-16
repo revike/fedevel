@@ -13,6 +13,15 @@
                 <p class="register-p">
                     <a href="{% url 'auth:register' %}">Зарегистрироваться</a>
                 </p>
+                <p class="register-p">
+                    <a href="{% url 'social:begin' backend='google-oauth2' %}">
+                        <img src="https://pngicon.ru/file/uploads/1303506055_social_google_box-64x64.png" alt="Google">
+                    </a>
+
+                    <a href="{% url 'social:begin' backend='vk-oauth2' %}?next=/">
+                        <img src="https://pngicon.ru/file/uploads/vkontakte-64x64.png" alt="вконтакте">
+                    </a>
+                </p>
             </div>
         </form>
     </div>

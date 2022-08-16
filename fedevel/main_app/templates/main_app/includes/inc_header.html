@@ -6,7 +6,7 @@
             </form>
         </label>
         {% if not user.is_anonymous %}
-            <a class="header-menu" href="{% url 'auth:login' %}">🧑🏻‍🦰 {{ user.first_name }}</a>
+            <a class="header-menu" href="{% url 'auth:login' %}">🧑🏻‍🦰 {{ user.username }}</a>
         {% else %}
             <a class="header-menu" href="{% url 'auth:login' %}">Войти</a>
         {% endif %}
