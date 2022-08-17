@@ -3,91 +3,29 @@
 
 {% block content %}
     <div class="row">
-        <h1 class="personal_title">{{ title|capfirst }}</h1>
-        <div class="personal-menu col-2">
-            <a href="#">Профиль</a>
-            <a href="#">Друзья</a>
-            <a href="#">Сообщения</a>
-            <a href="#">Избранное</a>
-            <a href="#">Корзина</a>
-            {% if user.is_staff %}
-                <a href="{% url 'admin:index' %}">Админка</a>
-            {% endif %}
-            <a href="{% url 'auth:logout' %}">Выйти</a>
-        </div>
+        {% include 'personal_app/includes/inc_personal_menu.html' %}
 
         <div class="personal-menu-content col-9">
             <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                architecto asperiores, aspernatur at consequatur, ea eum
-                maxime, nostrum officiis perspiciatis quod quos veniam.
-                Adipisci beatae doloribus maiores molestias necessitatibus nisi
-                nobis rerum totam. Accusamus consequatur enim esse est ipsum,
-                necessitatibus non odio omnis quae qui tempore voluptatum?
-                Autem consectetur corporis culpa doloremque et explicabo
-                incidunt iure iusto modi quaerat quas qui ratione recusandae
-                repudiandae, sapiente sequi velit. At autem ipsam molestias non
-                provident veritatis voluptate! Amet laboriosam praesentium quos
-                vitae voluptatibus! A adipisci architecto consequatur deleniti
-                dolor eum itaque, iure libero, mollitia neque nulla, quod
-                repellat repellendus? Eum, in, voluptatibus?
-            </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                architecto asperiores, aspernatur at consequatur, ea eum
-                maxime, nostrum officiis perspiciatis quod quos veniam.
-                Adipisci beatae doloribus maiores molestias necessitatibus nisi
-                nobis rerum totam. Accusamus consequatur enim esse est ipsum,
-                necessitatibus non odio omnis quae qui tempore voluptatum?
-                Autem consectetur corporis culpa doloremque et explicabo
-                incidunt iure iusto modi quaerat quas qui ratione recusandae
-                repudiandae, sapiente sequi velit. At autem ipsam molestias non
-                provident veritatis voluptate! Amet laboriosam praesentium quos
-                vitae voluptatibus! A adipisci architecto consequatur deleniti
-                dolor eum itaque, iure libero, mollitia neque nulla, quod
-                repellat repellendus? Eum, in, voluptatibus?
-            </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                architecto asperiores, aspernatur at consequatur, ea eum
-                maxime, nostrum officiis perspiciatis quod quos veniam.
-                Adipisci beatae doloribus maiores molestias necessitatibus nisi
-                nobis rerum totam. Accusamus consequatur enim esse est ipsum,
-                necessitatibus non odio omnis quae qui tempore voluptatum?
-                Autem consectetur corporis culpa doloremque et explicabo
-                incidunt iure iusto modi quaerat quas qui ratione recusandae
-                repudiandae, sapiente sequi velit. At autem ipsam molestias non
-                provident veritatis voluptate! Amet laboriosam praesentium quos
-                vitae voluptatibus! A adipisci architecto consequatur deleniti
-                dolor eum itaque, iure libero, mollitia neque nulla, quod
-                repellat repellendus? Eum, in, voluptatibus?
-            </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                architecto asperiores, aspernatur at consequatur, ea eum
-                maxime, nostrum officiis perspiciatis quod quos veniam.
-                Adipisci beatae doloribus maiores molestias necessitatibus nisi
-                nobis rerum totam. Accusamus consequatur enim esse est ipsum,
-                necessitatibus non odio omnis quae qui tempore voluptatum?
-                Autem consectetur corporis culpa doloremque et explicabo
-                incidunt iure iusto modi quaerat quas qui ratione recusandae
-                repudiandae, sapiente sequi velit. At autem ipsam molestias non
-                provident veritatis voluptate! Amet laboriosam praesentium quos
-                vitae voluptatibus! A adipisci architecto consequatur deleniti
-                dolor eum itaque, iure libero, mollitia neque nulla, quod
-                repellat repellendus? Eum, in, voluptatibus?
-            </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                architecto asperiores, aspernatur at consequatur, ea eum
-                maxime, nostrum officiis perspiciatis quod quos veniam.
-                Adipisci beatae doloribus maiores molestias necessitatibus nisi
-                nobis rerum totam. Accusamus consequatur enim esse est ipsum,
-                necessitatibus non odio omnis quae qui tempore voluptatum?
-                Autem consectetur corporis culpa doloremque et explicabo
-                incidunt iure iusto modi quaerat quas qui ratione recusandae
-                repudiandae, sapiente sequi velit. At autem ipsam molestias non
-                provident veritatis voluptate! Amet laboriosam praesentium quos
-                vitae voluptatibus! A adipisci architecto consequatur deleniti
-                dolor eum itaque, iure libero, mollitia neque nulla, quod
-                repellat repellendus? Eum, in, voluptatibus?
-            </p>
+            <h1 class="personal_title">
+                <p>{{ user }}</p>
+            </h1>
+            <p>
+                Здесь вы сможете:</p>
+            <ul>
+                <li>изменить ваш профиль</li>
+                <li>написать друзьям</li>
+                <li>посмотреть ваши избранные товары</li>
+                <li>перейти в корзину</li>
+            </ul>
+
+            <br>
+            <h6>
+                Ваш логин для входа:
+                <h5>{{ user.username }}</h5>
+            </h6>
+            <a href="{% url 'personal:profile' user.pk %}">изменить</a>
+
         </div>
     </div>
 

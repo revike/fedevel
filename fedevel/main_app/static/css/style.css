@@ -172,3 +172,30 @@ body {
     background-color: #ddd;
     color: cornflowerblue;
 }
+
+.active {
+    color: #6f42c1;
+}
+
+.link_avatar_edit {
+    text-align: right;
+    padding-top: 5%;
+    padding-right: 12%;
+}
+
+.link_avatar_edit a:hover {
+    color: cornflowerblue;
+}
+
+.avatar {
+    border: grey 2px solid;
+    border-radius: 25%;
+}
+
+.errorlist {
+    display: none;
+}
+
+.save_info_user {
+    text-align: end;
+}
