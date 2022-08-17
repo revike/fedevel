@@ -10,7 +10,7 @@ from auth_app.models import ShopUser
 class CompanyUserLoginForm(AuthenticationForm):
     """Форма авторизации"""
     username = forms.CharField(label='')
-    password = forms.CharField(label='')
+    password = forms.CharField(label='', widget=forms.PasswordInput())
 
     class Meta:
         model = ShopUser

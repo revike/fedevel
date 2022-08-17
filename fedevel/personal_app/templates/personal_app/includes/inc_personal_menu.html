@@ -1,0 +1,30 @@
+<h1 class="personal_title">{{ title|capfirst }}</h1>
+<div class="personal-menu col-2">
+    <a href="{% url 'personal:profile' user.pk %}">
+        <small {% if request.resolver_match.url_name == "profile" %}
+            class="active"
+        {% endif %}>
+            Профиль
+        </small>
+    </a>
+    <a href="#">
+        <small class="">Друзья</small>
+    </a>
+    <a href="#">
+        <small class="">Сообщения</small>
+    </a>
+    <a href="#">
+        <small class="">Избранное</small>
+    </a>
+    <a href="#">
+        <small class="">Корзина</small>
+    </a>
+    {% if user.is_staff %}
+        <a href="{% url 'admin:index' %}">
+            <small class="">Админка</small>
+        </a>
+    {% endif %}
+    <a href="{% url 'auth:logout' %}">
+        <small class="">Выйти</small>
+    </a>
+</div>

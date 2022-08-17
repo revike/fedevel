@@ -63,7 +63,8 @@ class ShopUserProfile(models.Model):
     )
 
     user = models.OneToOneField(ShopUser, unique=True, null=False,
-                                db_index=True, on_delete=models.CASCADE)
+                                db_index=True, primary_key=True,
+                                on_delete=models.CASCADE)
     avatar = models.ImageField(
         upload_to='image_profile', blank=True, verbose_name='аватар')
     about_me = models.TextField(blank=True, verbose_name='о себе')
@@ -82,12 +83,15 @@ class ShopUserProfile(models.Model):
         super().save()
         try:
             img = Image.open(self.avatar.path)
-
-            if img.height > 300 or img.width > 300:
-                output_size = (300, 300)
-                img.thumbnail(output_size)
-                img.save()
-        except (TypeError, ValueError):
+            size = 200
+            if img.height > size or img.width > size:
+                output_size = (size, size)
+                # img.thumbnail(output_size, Image.ANTIALIAS)
+                # img.save(self.avatar.path)
+                img_resize = img.resize(output_size)
+                img_resize.show()
+                img_resize.save(self.avatar.path)
+        except ValueError:
             pass
 
     def __str__(self):

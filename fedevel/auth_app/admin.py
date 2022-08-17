@@ -14,3 +14,4 @@ class ShopUserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ShopUser, ShopUserAdmin)
+admin.site.register(ShopUserProfile)

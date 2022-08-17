@@ -1,0 +1,35 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        {% include 'personal_app/includes/inc_personal_menu.html' %}
+
+        <div class="personal-menu-content col-9">
+            <br>
+            <div class="row">
+                <div class="col-3">
+                    <img class="avatar" src="/media/{{ object.avatar }}" alt="pic">
+                    <div class="link_avatar_edit">
+                        <a class="small link-secondary link_fedevel" href="#">Изменить</a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <form action="{% url 'personal:profile' user.pk %}" method="post">
+                        {% csrf_token %}
+                        {{ form_user.as_p }}
+                        {{ form.as_p }}
+                        <div class="save_info_user">
+                            <button class="form-control__button" type="submit">
+                                Сохранить
+                            </button>
+                        </div>
+                    </form>
+                    <a href="#">Изменить пароль</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
