@@ -9,13 +9,15 @@
             <br>
             <div class="row">
                 <div class="col-3">
-                    <img class="avatar" src="/media/{{ object.avatar }}" alt="pic">
+                    <img class="avatar" src="/media/{{ object.avatar }}"
+                         alt="pic">
                     <div class="link_avatar_edit">
                         <a class="small link-secondary link_fedevel" href="#">Изменить</a>
                     </div>
                 </div>
                 <div class="col-9">
-                    <form action="{% url 'personal:profile' user.pk %}" method="post">
+                    <form action="{% url 'personal:profile' user.pk %}"
+                          method="post">
                         {% csrf_token %}
                         {{ form_user.as_p }}
                         {{ form.as_p }}

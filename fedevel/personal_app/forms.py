@@ -7,6 +7,11 @@ from auth_app.models import ShopUserProfile, ShopUser
 class ShopUserEditForm(UserChangeForm):
     """Форма редактирования юзера"""
 
+    username = forms.CharField(
+        label='Имя пользователя:',
+        widget=forms.TextInput(attrs={'placeholder': 'username'}),
+    )
+
     class Meta:
         model = ShopUser
         fields = ('username', 'first_name', 'last_name', 'phone', 'email')
@@ -18,7 +23,6 @@ class ShopUserEditForm(UserChangeForm):
             field.help_text = ''
             if field_name == 'password':
                 field.widget = forms.HiddenInput()
-            self.fields['username'].widget.attrs['placeholder'] = 'username'
             self.fields['first_name'].widget.attrs['placeholder'] = 'Иван'
             self.fields['last_name'].widget.attrs['placeholder'] = 'Иванов'
             self.fields['email'].widget.attrs['placeholder'] = 'email@email.ru'
@@ -33,7 +37,10 @@ class ShopUserEditForm(UserChangeForm):
 
 class ProfileEditForm(UserChangeForm):
     """Форма редактирования профиля"""
-    gender = forms.ChoiceField(choices=(('M', 'Мужчина'), ('W', 'Женщина')))
+    gender = forms.ChoiceField(
+        label='Пол:',
+        choices=(('M', 'Мужчина'), ('W', 'Женщина')),
+    )
 
     class Meta:
         model = ShopUserProfile

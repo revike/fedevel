@@ -192,10 +192,6 @@ body {
     border-radius: 25%;
 }
 
-.errorlist {
-    display: none;
-}
-
 .save_info_user {
     text-align: end;
 }
