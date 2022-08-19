@@ -1,8 +1,9 @@
+from django import forms
 from django.contrib.auth.decorators import user_passes_test
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import edit, TemplateView, UpdateView
 
 from auth_app.models import ShopUserProfile
 from main_app.models import ProductCategory
@@ -45,13 +46,14 @@ class ProfileUpdateView(UpdateView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
-        form_user = self.form_user(self.request.POST,
+        form_user = self.form_user(self.request.POST, self.request.FILES,
                                    instance=self.request.user)
         if form.is_valid() and form_user.is_valid():
             self.form_valid(form)
             self.form_valid(form_user)
-        return HttpResponseRedirect(
-            reverse('personal:profile', kwargs={'pk': self.request.user.pk}))
+            return HttpResponseRedirect(self.request.path_info)
+        # return self.get(self.request, *args, **kwargs)
+        return self.get(request, *args, **kwargs)
 
     @method_decorator(user_passes_test(lambda u: u.is_authenticated))
     def dispatch(self, *args, **kwargs):
